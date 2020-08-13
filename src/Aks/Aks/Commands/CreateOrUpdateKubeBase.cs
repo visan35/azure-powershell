@@ -452,47 +452,5 @@ namespace Microsoft.Azure.Commands.Aks
             var subPart = string.Join("", DefaultContext.Subscription.Id.Take(4));
             return $"{namePart}{subPart}";
         }
-
-        protected string GenerateSshKeyValue()
-        {
-            String generateSshKeyPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".ssh", "id_rsa"); ;
-            if (File.Exists(generateSshKeyPath))
-            {
-                throw new ArgumentException(string.Format(Resources.DefaultSshKeyAlreadyExist));
-            }
-            using (Process process = new Process())
-            {
-                process.StartInfo.FileName = "ssh-keygen.exe";
-                process.StartInfo.Arguments = "-f " + generateSshKeyPath;
-                process.StartInfo.UseShellExecute = false;
-                process.StartInfo.RedirectStandardInput = true;
-                process.StartInfo.RedirectStandardOutput = true;
-                process.Start();
-
-                Console.WriteLine(process.StandardOutput.ReadToEnd());
-
-                process.WaitForExit();
-            }
-            return GetSshKey(generateSshKeyPath);
-        }
-
-        protected virtual void PreValidate()
-        {
-            if (this.IsParameterBound(c => c.GenerateSshKey))
-            {
-                if (this.IsParameterBound(c => c.SshKeyValue))
-                {
-                    throw new ArgumentException(string.Format(Resources.DonotUseGenerateSshKeyWithSshKeyValue));
-                }
-            }
-        }
-
-        protected void PrepareParameter()
-        {
-            if (this.IsParameterBound(c => c.GenerateSshKey))
-            {
-                SshKeyValue = GenerateSshKeyValue();
-            }
-        }
     }
 }
