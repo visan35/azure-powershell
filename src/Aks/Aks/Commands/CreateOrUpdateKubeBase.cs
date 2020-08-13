@@ -117,11 +117,6 @@ namespace Microsoft.Azure.Commands.Aks
         [Alias("SshKeyPath")]
         public string SshKeyValue { get; set; }
 
-        [Parameter(
-            Mandatory = false,
-            HelpMessage = "Generate ssh key file to {HOME}/.ssh/id_rsa.")]
-        public SwitchParameter GenerateSshKey { get; set; }
-
         [Parameter(Mandatory = false, HelpMessage = "Run cmdlet in the background")]
         public SwitchParameter AsJob { get; set; }
 

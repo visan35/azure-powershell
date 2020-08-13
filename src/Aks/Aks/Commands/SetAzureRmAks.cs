@@ -57,8 +57,6 @@ namespace Microsoft.Azure.Commands.Aks
         public override void ExecuteCmdlet()
         {
             base.ExecuteCmdlet();
-            PreValidate();
-            PrepareParameter();
 
             ManagedCluster cluster = null;
             switch (ParameterSetName)
@@ -105,11 +103,7 @@ namespace Microsoft.Azure.Commands.Aks
                             cluster.DnsPrefix = DnsNamePrefix;
                         }
 
-                        if (this.IsParameterBound(c => c.GenerateSshKey))
-                        {
-                            SshKeyValue = GenerateSshKeyValue();
-                        }
-                        if (string.IsNullOrEmpty(SshKeyValue))
+                        if (this.IsParameterBound(c => c.SshKeyValue))
                         {
                             WriteVerbose(Resources.UpdatingSshKeyValue);
                             cluster.LinuxProfile.Ssh.PublicKeys = new List<ContainerServiceSshPublicKey>
