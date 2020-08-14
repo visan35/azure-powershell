@@ -18,6 +18,8 @@
         - Additional information about change #1
 -->
 ## Upcoming Release
+
+## Version 0.2.0
 * Remove legacy SkuSize from input and output (#11725)
 * Specify a default name when create MySql firewall rule without name and add AllowAll mode (#11932)
 * Enable EndIpAddress to be absent if only one IP to be authorized in firewall rule (#11933)

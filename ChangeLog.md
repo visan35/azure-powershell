@@ -1,3 +1,45 @@
+## 4.6.0 - August 2020
+#### Az.Accounts
+* Loaded all public cloud environments when discovery endpoint doesn't return default AzureCloud or other public environments [#12633]
+* Exposed SubscriptionPolicies in 'Get-AzSubscription' [#12551]
+
+#### Az.Compute
+* Added '-EncryptionAtHost' parameter to New-AzVm, New-AzVmss, New-AzVMConfig, New-AzVmssConfig, Update-AzVM, and Update-AzVmss
+* Added 'SecurityProfile' to Get-AzVM and Get-AzVmss return object
+* Added the '-InstanceView' switch as optional parameter to Get-AzHostGroup
+* New cmdlet 'Invoke-AzVmPatchAssessment'
+
+#### Az.DataFactory
+* Added missing properties to PSPipelineRun class.
+
+#### Az.Monitor
+* Extend the parameter set in 'Set-AzDiagnosticSetting' for separation of Logs and Metrics enablement [#12482]
+* Fixed bug for 'Add-AzMetricAlertRuleV2' when getting metric alert from pipeline
+
+#### Az.Resources
+* Updated 'Get-AzPolicyAlias' response to include information indicating whether the alias is modifiable by Azure Policy.
+* Created new cmdlet 'Set-AzRoleAssignment'
+* Added 'Get-AzDeploymentManagementGroupWhatIfResult' for getting ARM template What-If results at management Group scope
+* Added 'Get-AzTenantWhatIfResult' new cmdlet for getting ARM template What-If results at tenant scope
+* Overrode '-WhatIf' and '-Confirm' for 'New-AzManagementGroupDeployment' and 'New-AzTenantDeployment' to use ARM template What-If results
+* Fixed the hehaviors of '-WhatIf' and '-Confirm' for new deployment cmdlets so they comply with False and 
+* Fixed serialization error for '-TemplateObject' and 'TemplateParameterObject' [#1528] [#6292]
+* Added breaking change attribute to 'GetAzureResourceGroupDeploymentOperationCmdlet' for the upcoming output type change
+
+#### Az.SignalR
+* Fixed 'Restart-AzSignalR' and 'Update-AzSignalR' help files errors
+* Added cmdlets 'Update-AzSignalRNetworkAcl', 'Set-AzSignalRUpstream'
+
+#### Az.Storage
+* Supported blob query acceleration
+    -  'Get-AzStorageBlobQueryResult'
+    -  'New-AzStorageBlobQueryConfig'
+* Update help file, and add more description and fix typo
+    -  'Start-AzStorageBlobCopy'
+    -  'Get-AzDataLakeGen2Item'
+* Fixed [#12592]: Fix download blob fail when related sub directory not exist.
+	- 'Get-AzStorageBlobContent'
+
 ## 4.5.0 - August 2020
 #### Az.Accounts
 * Updated 'Connect-AzAccount' to accept parameter 'MaxContextPopulation' [#9865]
